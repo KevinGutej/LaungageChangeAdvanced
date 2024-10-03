@@ -4,32 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Language Change</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Language Changer Advanced</title>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
     <header>
-        <div class="navbar">
+        <nav>
             <ul>
-                <li><a href="#" id="mainPageLink">Main Page</a></li>
+                <li><a href="#" id="navHome">Home</a></li>
+                <li><a href="#" id="navAbout">About</a></li>
+                <li><a href="#" id="navContact">Contact</a></li>
             </ul>
-        </div>
+        </nav>
     </header>
 
     <main>
-        <section class="content-area">
-            <h1 id="titleMessage">Welcome to Language Change Website</h1>
-            <p id="infoParagraph">Using JavaScript, this website can change to any Language in just a few clicks</p>
+        <h1 id="mainHeading">Welcome to Language Change Website</h1>
+        <p id="mainDescription">Using JavaScript, this website can change to any Language in just a few clicks.</p>
 
-            <form class="language-form">
-                <label for="languageOptions" id="langLabel">Choose Your Language:</label>
-                <select id="languageOptions">
-                    <option value="en">English</option>
-                    <option value="fr">French</option>
-                </select>
-            </form>
-        </section>
+        <label for="langSelector">Choose Your Language:</label>
+        <select id="langSelector">
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="es">Español</option>
+            <option value="ar">العربية</option>
+        </select>
     </main>
     <script src="js/languageSwitcher.js"></script>
 </body>
