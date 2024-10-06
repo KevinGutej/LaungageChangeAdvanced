@@ -1,39 +1,70 @@
-body, h1, p, ul, li {
+/* Basic Styling */
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-}
-
-body {
-    font-family: 'Helvetica Neue', sans-serif;
-    background-color: #eaeaea;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 header {
-    background-color: #2d2d2d;
-    padding: 15px 0;
+    background-color: var(--header-bg-color);
+    color: white;
+    padding: 1em 0;
+    text-align: center;
 }
 
-.navbar ul {
+header nav ul {
     list-style: none;
-    text-align: center;
+    padding: 0;
 }
 
-.navbar ul li {
+header nav ul li {
     display: inline;
-    margin-right: 25px;
+    margin: 0 10px;
 }
 
-.navbar ul li a {
+header nav ul li a {
+    color: white;
     text-decoration: none;
-    color: #fff;
-    font-size: 18px;
 }
 
-.content-area {
-    padding: 40px;
+main {
+    padding: 2em;
     text-align: center;
 }
 
-.language-form {
-    margin-top: 20px;
+.theme-switcher {
+    text-align: center;
+    margin-top: 1em;
+}
+
+body[dir="rtl"] {
+    direction: rtl;
+}
+
+body[dir="rtl"] header nav ul li {
+    display: inline-block;
+}
+
+:root {
+    --bg-color: #f0f0f0;
+    --text-color: #333;
+    --header-bg-color: #333;
+}
+
+body.dark-theme {
+    --bg-color: #1e1e1e;
+    --text-color: #f0f0f0;
+    --header-bg-color: #555;
+}
+
+footer {
+    text-align: center;
+    margin-top: 2em;
+}
+
+input[type="checkbox"] {
+    margin-left: 10px;
 }
