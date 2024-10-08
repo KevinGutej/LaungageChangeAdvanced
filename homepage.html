@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Language Changer Advanced</title>
+    <title>Advanced Language Changer</title>
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 
@@ -36,6 +36,13 @@
         </select>
 
         <p id="formattedDate"></p>
+
+        <div class="font-settings">
+            <label for="fontSize">Adjust Font Size:</label>
+            <input type="range" id="fontSize" min="12" max="24" value="16">
+        </div>
+
+        <button id="textToSpeech">Listen to Content</button>
     </main>
     <script src="js/languageSwitcher.js"></script>
 </body>

@@ -1,11 +1,11 @@
-/* Basic Styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
+    font-size: var(--font-size);
+    transition: background-color 0.3s, color 0.3s, font-size 0.3s;
 }
 
 header {
@@ -40,18 +40,8 @@ main {
     margin-top: 1em;
 }
 
-body[dir="rtl"] {
-    direction: rtl;
-}
-
-body[dir="rtl"] header nav ul li {
-    display: inline-block;
-}
-
-:root {
-    --bg-color: #f0f0f0;
-    --text-color: #333;
-    --header-bg-color: #333;
+.font-settings {
+    margin-top: 1em;
 }
 
 body.dark-theme {
@@ -60,11 +50,6 @@ body.dark-theme {
     --header-bg-color: #555;
 }
 
-footer {
-    text-align: center;
-    margin-top: 2em;
-}
-
-input[type="checkbox"] {
-    margin-left: 10px;
+body[dir="rtl"] {
+    direction: rtl;
 }

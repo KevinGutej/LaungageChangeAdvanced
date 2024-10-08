@@ -8,6 +8,13 @@ const dateFormatOptions = {
     ar: { day: '2-digit', month: '2-digit', year: 'numeric' }
 };
 
+function speakText(lang) {
+    const speech = new SpeechSynthesisUtterance();
+    speech.lang = lang;
+    speech.text = `${document.getElementById('mainHeading').textContent}. ${document.getElementById('mainDescription').textContent}`;
+    window.speechSynthesis.speak(speech);
+}
+
 function loadLanguageData(lang) {
     fetch(`languages/${lang}.json`)
         .then(response => {
@@ -22,6 +29,7 @@ function loadLanguageData(lang) {
             document.getElementById('navContact').textContent = data.navContact;
             document.getElementById('mainHeading').textContent = data.mainHeading;
             document.getElementById('mainDescription').textContent = data.mainDescription;
+
             const today = new Date();
             const formattedDate = today.toLocaleDateString(lang, dateFormatOptions[lang]);
             document.getElementById('formattedDate').textContent = formattedDate;
@@ -44,18 +52,6 @@ function setDirection(lang) {
     }
 }
 
-function initializePage() {
-    const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
-    const savedTheme = localStorage.getItem('preferredTheme') || 'light';
-    
-    document.getElementById('langSelector').value = savedLanguage;
-    document.getElementById('themeToggle').checked = savedTheme === 'dark';
-
-    loadLanguageData(savedLanguage);
-    setDirection(savedLanguage);
-    applyTheme(savedTheme);
-}
-
 function applyTheme(theme) {
     if (theme === 'dark') {
         document.body.classList.add('dark-theme');
@@ -63,6 +59,26 @@ function applyTheme(theme) {
         document.body.classList.remove('dark-theme');
     }
     localStorage.setItem('preferredTheme', theme);
+}
+
+function applyFontSize(size) {
+    document.body.style.setProperty('--font-size', `${size}px`);
+    localStorage.setItem('fontSize', size);
+}
+
+function initializePage() {
+    const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+    const savedTheme = localStorage.getItem('preferredTheme') || 'light';
+    const savedFontSize = localStorage.getItem('fontSize') || '16';
+
+    document.getElementById('langSelector').value = savedLanguage;
+    document.getElementById('themeToggle').checked = savedTheme === 'dark';
+    document.getElementById('fontSize').value = savedFontSize;
+
+    loadLanguageData(savedLanguage);
+    setDirection(savedLanguage);
+    applyTheme(savedTheme);
+    applyFontSize(savedFontSize);
 }
 
 document.getElementById('langSelector').addEventListener('change', function () {
@@ -76,5 +92,16 @@ document.getElementById('themeToggle').addEventListener('change', function () {
     const selectedTheme = this.checked ? 'dark' : 'light';
     applyTheme(selectedTheme);
 });
+
+document.getElementById('fontSize').addEventListener('input', function () {
+    applyFontSize(this.value);
+});
+
+document.getElementById('textToSpeech').addEventListener('click', function () {
+    const selectedLanguage = document.getElementById('langSelector').value;
+    speakText(selectedLanguage);
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
 
 initializePage();
