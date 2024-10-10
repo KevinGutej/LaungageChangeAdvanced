@@ -50,6 +50,35 @@ body.dark-theme {
     --header-bg-color: #555;
 }
 
-body[dir="rtl"] {
-    direction: rtl;
+.color-scheme {
+    margin-top: 1em;
+}
+
+body.blue-scheme {
+    --bg-color: #e0f7fa;
+    --text-color: #00796b;
+    --header-bg-color: #004d40;
+}
+
+body.green-scheme {
+    --bg-color: #e8f5e9;
+    --text-color: #388e3c;
+    --header-bg-color: #1b5e20;
+}
+
+body.red-scheme {
+    --bg-color: #ffebee;
+    --text-color: #c62828;
+    --header-bg-color: #b71c1c;
+}
+
+#cookieBanner {
+    background-color: #f4f4f4;
+    padding: 10px;
+    display: none;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 9999;
 }

@@ -61,24 +61,49 @@ function applyTheme(theme) {
     localStorage.setItem('preferredTheme', theme);
 }
 
+function applyColorScheme(scheme) {
+    document.body.classList.remove('blue-scheme', 'green-scheme', 'red-scheme');
+    if (scheme !== 'default') {
+        document.body.classList.add(`${scheme}-scheme`);
+    }
+    localStorage.setItem('colorScheme', scheme);
+}
+
 function applyFontSize(size) {
     document.body.style.setProperty('--font-size', `${size}px`);
     localStorage.setItem('fontSize', size);
+}
+
+function updateWordCount() {
+    const text = document.body.innerText;
+    const wordCount = text.split(/\s+/).filter(word => word.length > 0).length;
+    document.getElementById('wordCounter').textContent = wordCount;
 }
 
 function initializePage() {
     const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
     const savedTheme = localStorage.getItem('preferredTheme') || 'light';
     const savedFontSize = localStorage.getItem('fontSize') || '16';
+    const savedColorScheme = localStorage.getItem('colorScheme') || 'default';
 
     document.getElementById('langSelector').value = savedLanguage;
     document.getElementById('themeToggle').checked = savedTheme === 'dark';
     document.getElementById('fontSize').value = savedFontSize;
+    document.getElementById('colorScheme').value = savedColorScheme;
 
     loadLanguageData(savedLanguage);
     setDirection(savedLanguage);
     applyTheme(savedTheme);
     applyFontSize(savedFontSize);
+    applyColorScheme(savedColorScheme);
+    updateWordCount();
+
+    setInterval(updateTimeDisplay, 1000);
+}
+
+function updateTimeDisplay() {
+    const now = new Date();
+    document.getElementById('timeDisplay').textContent = now.toLocaleTimeString();
 }
 
 document.getElementById('langSelector').addEventListener('change', function () {
@@ -97,11 +122,24 @@ document.getElementById('fontSize').addEventListener('input', function () {
     applyFontSize(this.value);
 });
 
+document.getElementById('colorScheme').addEventListener('change', function () {
+    applyColorScheme(this.value);
+});
+
 document.getElementById('textToSpeech').addEventListener('click', function () {
     const selectedLanguage = document.getElementById('langSelector').value;
     speakText(selectedLanguage);
 });
 
-document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('acceptCookies').addEventListener('click', function () {
+    document.getElementById('cookieBanner').style.display = 'none';
+    localStorage.setItem('cookiesAccepted', 'true');
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookieBanner').style.display = 'block';
+    }
+});
 
 initializePage();

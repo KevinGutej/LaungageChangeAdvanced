@@ -9,6 +9,10 @@
 </head>
 
 <body>
+    <div id="cookieBanner">
+        <p>This website uses cookies to ensure you get the best experience. <button id="acceptCookies">Accept</button></p>
+    </div>
+    
     <header>
         <nav>
             <ul>
@@ -29,10 +33,10 @@
 
         <label for="langSelector">Choose Your Language:</label>
         <select id="langSelector">
-            <option value="en">English</option>
-            <option value="fr">Français</option>
-            <option value="es">Español</option>
-            <option value="ar">العربية</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="ar">🇸🇦 العربية</option>
         </select>
 
         <p id="formattedDate"></p>
@@ -43,7 +47,21 @@
         </div>
 
         <button id="textToSpeech">Listen to Content</button>
+        <p id="wordCount">Word Count: <span id="wordCounter">0</span></p>
+
+        <div class="color-scheme">
+            <label for="colorScheme">Choose Color Scheme:</label>
+            <select id="colorScheme">
+                <option value="default">Default</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+                <option value="red">Red</option>
+            </select>
+        </div>
+
+        <p id="timeDisplay"></p>
     </main>
+    
     <script src="js/languageSwitcher.js"></script>
 </body>
 
