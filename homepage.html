@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Language Changer</title>
+    <title>Advanced Language Changer with AI Features</title>
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 
@@ -25,11 +25,12 @@
             <label for="themeToggle">Dark Mode:</label>
             <input type="checkbox" id="themeToggle">
         </div>
+        <button id="accessibilityMode">Toggle Accessibility Mode</button>
     </header>
 
     <main>
         <h1 id="mainHeading">Welcome to Language Change Website</h1>
-        <p id="mainDescription">Using JavaScript, this website can change to any Language in just a few clicks.</p>
+        <p id="mainDescription">Using AI and modern technology, this website can change to any Language in just a few clicks.</p>
 
         <label for="langSelector">Choose Your Language:</label>
         <select id="langSelector">
@@ -47,7 +48,8 @@
         </div>
 
         <button id="textToSpeech">Listen to Content</button>
-        <p id="wordCount">Word Count: <span id="wordCounter">0</span></p>
+        <p id="wordCount">Word Count: <span id="wordCounter">0
+        </span></p>
 
         <div class="color-scheme">
             <label for="colorScheme">Choose Color Scheme:</label>
@@ -58,10 +60,18 @@
                 <option value="red">Red</option>
             </select>
         </div>
-
         <p id="timeDisplay"></p>
+        <div class="chatbot-container">
+            <h3>Live Chat Support</h3>
+            <div id="chatbox">
+                <div id="chatMessages"></div>
+            </div>
+            <input type="text" id="chatInput" placeholder="Type your message...">
+            <button id="sendChat">Send</button>
+        </div>
+
+        <button id="speechToText">Start Voice Input</button>
     </main>
-    
     <script src="js/languageSwitcher.js"></script>
 </body>
 

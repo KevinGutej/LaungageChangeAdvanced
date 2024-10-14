@@ -8,11 +8,75 @@ const dateFormatOptions = {
     ar: { day: '2-digit', month: '2-digit', year: 'numeric' }
 };
 
+function detectLocationAndSetLanguage() {
+    fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(data => {
+            const countryCode = data.country_code;
+            let language = 'en';
+
+            if (countryCode === 'FR') {
+                language = 'fr';
+            } else if (countryCode === 'ES') {
+                language = 'es';
+            } else if (countryCode === 'SA') {
+                language = 'ar';
+            }
+
+            document.getElementById('langSelector').value = language;
+            loadLanguageData(language);
+            setDirection(language);
+        })
+        .catch(() => {
+            console.error('Failed to detect location.');
+        });
+}
+
 function speakText(lang) {
     const speech = new SpeechSynthesisUtterance();
     speech.lang = lang;
     speech.text = `${document.getElementById('mainHeading').textContent}. ${document.getElementById('mainDescription').textContent}`;
     window.speechSynthesis.speak(speech);
+}
+
+function initializeChatBot() {
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendChat = document.getElementById('sendChat');
+
+    sendChat.addEventListener('click', function() {
+        const userMessage = chatInput.value;
+        if (userMessage) {
+            const messageContainer = document.createElement('p');
+            messageContainer.textContent = `You: ${userMessage}`;
+            chatMessages.appendChild(messageContainer);
+            chatInput.value = '';
+            getChatbotResponse(userMessage);
+        }
+    });
+}
+
+function getChatbotResponse(message) {
+    const chatMessages = document.getElementById('chatMessages');
+    const botResponse = document.createElement('p');
+    botResponse.textContent = `Bot: I see you said "${message}". How can I help further?`;
+    chatMessages.appendChild(botResponse);
+}
+
+function initializeSpeechToText() {
+    const speechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new speechRecognition();
+
+    const chatInput = document.getElementById('chatInput');
+
+    recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript;
+        chatInput.value = transcript;
+    };
+
+    document.getElementById('speechToText').addEventListener('click', function() {
+        recognition.start();
+    });
 }
 
 function loadLanguageData(lang) {
@@ -38,10 +102,6 @@ function loadLanguageData(lang) {
             console.error(error);
             alert(`Error: Unable to load language file for ${lang}`);
         });
-}
-
-function saveUserLanguage(lang) {
-    localStorage.setItem('preferredLanguage', lang);
 }
 
 function setDirection(lang) {
@@ -75,15 +135,15 @@ function applyFontSize(size) {
 }
 
 function updateWordCount() {
-    const text = document.body.innerText;
-    const wordCount = text.split(/\s+/).filter(word => word.length > 0).length;
+    const descriptionText = document.getElementById('mainDescription').textContent;
+    const wordCount = descriptionText.split(/\s+/).length;
     document.getElementById('wordCounter').textContent = wordCount;
 }
 
 function initializePage() {
     const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
     const savedTheme = localStorage.getItem('preferredTheme') || 'light';
-    const savedFontSize = localStorage.getItem('fontSize') || '16';
+    const savedFontSize = localStorage.getItem('fontSize') || 16;
     const savedColorScheme = localStorage.getItem('colorScheme') || 'default';
 
     document.getElementById('langSelector').value = savedLanguage;
@@ -97,8 +157,11 @@ function initializePage() {
     applyFontSize(savedFontSize);
     applyColorScheme(savedColorScheme);
     updateWordCount();
-
     setInterval(updateTimeDisplay, 1000);
+
+    initializeChatBot();
+    initializeSpeechToText();
+    detectLocationAndSetLanguage();
 }
 
 function updateTimeDisplay() {
@@ -106,37 +169,41 @@ function updateTimeDisplay() {
     document.getElementById('timeDisplay').textContent = now.toLocaleTimeString();
 }
 
-document.getElementById('langSelector').addEventListener('change', function () {
+document.getElementById('langSelector').addEventListener('change', function() {
     const selectedLanguage = this.value;
     loadLanguageData(selectedLanguage);
     saveUserLanguage(selectedLanguage);
     setDirection(selectedLanguage);
 });
 
-document.getElementById('themeToggle').addEventListener('change', function () {
+document.getElementById('themeToggle').addEventListener('change', function() {
     const selectedTheme = this.checked ? 'dark' : 'light';
     applyTheme(selectedTheme);
 });
 
-document.getElementById('fontSize').addEventListener('input', function () {
+document.getElementById('fontSize').addEventListener('input', function() {
     applyFontSize(this.value);
 });
 
-document.getElementById('colorScheme').addEventListener('change', function () {
+document.getElementById('colorScheme').addEventListener('change', function() {
     applyColorScheme(this.value);
 });
 
-document.getElementById('textToSpeech').addEventListener('click', function () {
+document.getElementById('textToSpeech').addEventListener('click', function() {
     const selectedLanguage = document.getElementById('langSelector').value;
     speakText(selectedLanguage);
 });
 
-document.getElementById('acceptCookies').addEventListener('click', function () {
+document.getElementById('acceptCookies').addEventListener('click', function() {
     document.getElementById('cookieBanner').style.display = 'none';
     localStorage.setItem('cookiesAccepted', 'true');
 });
 
-document.addEventListener('DOMContentLoaded', function () {
+document.getElementById('accessibilityMode').addEventListener('click', function() {
+    document.body.classList.toggle('accessibility-mode');
+});
+
+document.addEventListener('DOMContentLoaded', function() {
     if (!localStorage.getItem('cookiesAccepted')) {
         document.getElementById('cookieBanner').style.display = 'block';
     }
