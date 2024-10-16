@@ -4,73 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Language Changer with AI Features</title>
+    <title>Language Changer Advanced</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div id="cookieBanner">
-        <p>This website uses cookies to ensure you get the best experience. <button id="acceptCookies">Accept</button></p>
+    <div id="cookieBanner" class="cookie-banner">
+        <p>We use cookies to improve your experience. By using this site, you accept our <a href="#">privacy policy</a>.
+        </p>
+        <button id="acceptCookies" class="button-primary">Accept</button>
     </div>
-    
-    <header>
-        <nav>
+
+    <header class="main-header">
+        <div class="container">
+            <h1 id="mainHeading">Welcome to Language Change Website</h1>
+            <p id="mainDescription">Using JavaScript, this website can change to any Language in just a few clicks.</p>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="container">
             <ul>
                 <li><a href="#" id="navHome">Home</a></li>
                 <li><a href="#" id="navAbout">About</a></li>
                 <li><a href="#" id="navContact">Contact</a></li>
             </ul>
-        </nav>
-        <div class="theme-switcher">
-            <label for="themeToggle">Dark Mode:</label>
-            <input type="checkbox" id="themeToggle">
         </div>
-        <button id="accessibilityMode">Toggle Accessibility Mode</button>
-    </header>
+    </nav>
 
-    <main>
-        <h1 id="mainHeading">Welcome to Language Change Website</h1>
-        <p id="mainDescription">Using AI and modern technology, this website can change to any Language in just a few clicks.</p>
-
-        <label for="langSelector">Choose Your Language:</label>
-        <select id="langSelector">
-            <option value="en">🇬🇧 English</option>
-            <option value="fr">🇫🇷 Français</option>
-            <option value="es">🇪🇸 Español</option>
-            <option value="ar">🇸🇦 العربية</option>
-        </select>
-
-        <p id="formattedDate"></p>
-
-        <div class="font-settings">
-            <label for="fontSize">Adjust Font Size:</label>
-            <input type="range" id="fontSize" min="12" max="24" value="16">
-        </div>
-
-        <button id="textToSpeech">Listen to Content</button>
-        <p id="wordCount">Word Count: <span id="wordCounter">0
-        </span></p>
-
-        <div class="color-scheme">
-            <label for="colorScheme">Choose Color Scheme:</label>
-            <select id="colorScheme">
-                <option value="default">Default</option>
-                <option value="blue">Blue</option>
-                <option value="green">Green</option>
-                <option value="red">Red</option>
-            </select>
-        </div>
-        <p id="timeDisplay"></p>
-        <div class="chatbot-container">
-            <h3>Live Chat Support</h3>
-            <div id="chatbox">
-                <div id="chatMessages"></div>
+    <main class="container">
+        <section class="settings">
+            <div class="settings-item">
+                <label for="langSelector">Choose Your Language:</label>
+                <select id="langSelector" class="select-field">
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="es">Español</option>
+                    <option value="ar">العربية</option>
+                </select>
             </div>
-            <input type="text" id="chatInput" placeholder="Type your message...">
-            <button id="sendChat">Send</button>
-        </div>
 
-        <button id="speechToText">Start Voice Input</button>
+            <div class="settings-item">
+                <label for="themeToggle">Dark Mode:</label>
+                <input type="checkbox" id="themeToggle">
+            </div>
+
+            <div class="settings-item">
+                <label for="fontSize">Font Size:</label>
+                <input type="range" id="fontSize" min="12" max="24" value="16">
+            </div>
+
+            <div class="settings-item">
+                <label for="colorScheme">Color Scheme:</label>
+                <select id="colorScheme" class="select-field">
+                    <option value="default">Default</option>
+                    <option value="blue">Blue</option>
+                    <option value="green">Green</option>
+                    <option value="red">Red</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="chat-section">
+            <h2>Chat with our Bot</h2>
+            <div id="chatMessages" class="chat-box"></div>
+            <input type="text" id="chatInput" placeholder="Type your message..." class="input-field">
+            <button id="sendChat" class="button-primary">Send</button>
+            <button id="speechToText" class="button-secondary">🎤 Voice Input</button>
+        </section>
+
+        <section class="info-section">
+            <p id="wordCounter">Word Count: 0</p>
+            <p>Current Time: <span id="timeDisplay"></span></p>
+            <p>Date: <span id="formattedDate"></span></p>
+        </section>
     </main>
     <script src="js/languageSwitcher.js"></script>
 </body>
