@@ -169,6 +169,23 @@ function updateTimeDisplay() {
     document.getElementById('timeDisplay').textContent = now.toLocaleTimeString();
 }
 
+
+document.getElementById('submitFeedbackBtn').addEventListener('click', function () {
+    const feedbackText = document.getElementById('feedbackText').value.trim();
+    const rating = document.getElementById('rating').value;
+    if (feedbackText) {
+        logActivity(`Feedback submitted with rating ${rating}: ${feedbackText}`);
+        alert('Thank you for your feedback!');
+    }
+});
+
+function logActivity(activity) {
+    const activityLog = document.getElementById('activityLog');
+    const newActivityItem = document.createElement('li');
+    newActivityItem.textContent = activity;
+    activityLog.appendChild(newActivityItem);
+}
+
 document.getElementById('langSelector').addEventListener('change', function() {
     const selectedLanguage = this.value;
     loadLanguageData(selectedLanguage);

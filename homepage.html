@@ -4,15 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Language Changer Advanced</title>
+    <title>Language Changer Pro with Features</title>
     <link rel="stylesheet" href="styles/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div id="cookieBanner" class="cookie-banner">
-        <p>We use cookies to improve your experience. By using this site, you accept our <a href="#">privacy policy</a>.
-        </p>
+        <p>We use cookies to improve your experience. By using this site, you accept our <a href="#">privacy policy</a>.</p>
         <button id="acceptCookies" class="button-primary">Accept</button>
     </div>
 
@@ -66,18 +65,51 @@
             </div>
         </section>
 
-        <section class="chat-section">
-            <h2>Chat with our Bot</h2>
-            <div id="chatMessages" class="chat-box"></div>
-            <input type="text" id="chatInput" placeholder="Type your message..." class="input-field">
-            <button id="sendChat" class="button-primary">Send</button>
-            <button id="speechToText" class="button-secondary">🎤 Voice Input</button>
+        <section class="login-section">
+            <h2>Login or Sign Up</h2>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Enter your username">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password">
+                <button type="button" id="loginBtn" class="button-primary">Login</button>
+                <button type="button" id="signupBtn" class="button-secondary">Sign Up</button>
+            </form>
+            <div id="authStatus"></div>
         </section>
 
-        <section class="info-section">
-            <p id="wordCounter">Word Count: 0</p>
-            <p>Current Time: <span id="timeDisplay"></span></p>
-            <p>Date: <span id="formattedDate"></span></p>
+        <section class="recent-activity">
+            <h2>Recent Activity</h2>
+            <ul id="activityLog" class="activity-list"></ul>
+        </section>
+
+        <section class="to-do-section">
+            <h2>Your To-Do List</h2>
+            <input type="text" id="newTaskInput" placeholder="Add a new task">
+            <button id="addTaskBtn" class="button-primary">Add Task</button>
+            <ul id="taskList" class="task-list"></ul>
+        </section>
+
+        <section class="weather-widget">
+            <h2>Check Weather</h2>
+            <input type="text" id="cityInput" placeholder="Enter your city">
+            <button id="checkWeatherBtn" class="button-primary">Check Weather</button>
+            <div id="weatherResult"></div>
+        </section>
+
+        <section class="feedback-section">
+            <h2>Submit Feedback</h2>
+            <label for="feedbackText">Your feedback:</label>
+            <textarea id="feedbackText" rows="4" placeholder="Write your feedback here"></textarea>
+            <label for="rating">Rate us:</label>
+            <select id="rating">
+                <option value="5">⭐⭐⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="1">⭐</option>
+            </select>
+            <button id="submitFeedbackBtn" class="button-primary">Submit Feedback</button>
         </section>
     </main>
     <script src="js/languageSwitcher.js"></script>
