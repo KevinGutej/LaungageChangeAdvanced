@@ -4,103 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Language Changer Pro with Features</title>
+    <title>Language Changer Advanced</title>
     <link rel="stylesheet" href="styles/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div id="cookieBanner" class="cookie-banner">
-        <p>We use cookies to improve your experience. By using this site, you accept our <a href="#">privacy policy</a>.</p>
-        <button id="acceptCookies" class="button-primary">Accept</button>
-    </div>
-
     <header class="main-header">
         <div class="container">
-            <h1 id="mainHeading">Welcome to Language Change Website</h1>
-            <p id="mainDescription">Using JavaScript, this website can change to any Language in just a few clicks.</p>
+            <h1 id="mainHeading">Language Changer Advanced</h1>
+            <p id="mainDescription">Easily translate text between different languages with text-to-speech features with
+                just one click.</p>
         </div>
     </header>
 
-    <nav class="main-nav">
-        <div class="container">
-            <ul>
-                <li><a href="#" id="navHome">Home</a></li>
-                <li><a href="#" id="navAbout">About</a></li>
-                <li><a href="#" id="navContact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
     <main class="container">
-        <section class="settings">
-            <div class="settings-item">
-                <label for="langSelector">Choose Your Language:</label>
-                <select id="langSelector" class="select-field">
+        <section class="translator">
+            <div class="translator-item">
+                <label for="sourceLangSelector">From:</label>
+                <select id="sourceLangSelector" class="select-field">
                     <option value="en">English</option>
                     <option value="fr">Français</option>
                     <option value="es">Español</option>
                     <option value="ar">العربية</option>
                 </select>
+
+                <textarea id="sourceText" rows="4" placeholder="Enter text to translate"></textarea>
+                <button id="speakSourceText" class="button-secondary">Listen</button>
             </div>
 
-            <div class="settings-item">
-                <label for="themeToggle">Dark Mode:</label>
-                <input type="checkbox" id="themeToggle">
-            </div>
+            <button id="swapLanguagesBtn" class="button-primary">Swap Languages</button>
 
-            <div class="settings-item">
-                <label for="fontSize">Font Size:</label>
-                <input type="range" id="fontSize" min="12" max="24" value="16">
-            </div>
-
-            <div class="settings-item">
-                <label for="colorScheme">Color Scheme:</label>
-                <select id="colorScheme" class="select-field">
-                    <option value="default">Default</option>
-                    <option value="blue">Blue</option>
-                    <option value="green">Green</option>
-                    <option value="red">Red</option>
+            <div class="translator-item">
+                <label for="targetLangSelector">To:</label>
+                <select id="targetLangSelector" class="select-field">
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="es">Español</option>
+                    <option value="ar">العربية</option>
                 </select>
+
+                <textarea id="translatedText" rows="4" placeholder="Translation will appear here"></textarea>
+                <button id="speakTranslatedText" class="button-secondary">🔊 Listen</button>
             </div>
-        </section>
 
-        <section class="login-section">
-            <h2>Login or Sign Up</h2>
-            <form id="loginForm">
-                <label for="username">Username:</label>
-                <input type="text" id="username" placeholder="Enter your username">
-                <label for="password">Password:</label>
-                <input type="password" id="password" placeholder="Enter your password">
-                <button type="button" id="loginBtn" class="button-primary">Login</button>
-                <button type="button" id="signupBtn" class="button-secondary">Sign Up</button>
-            </form>
-            <div id="authStatus"></div>
-        </section>
-
-        <section class="recent-activity">
-            <h2>Recent Activity</h2>
-            <ul id="activityLog" class="activity-list"></ul>
-        </section>
-
-        <section class="to-do-section">
-            <h2>Your To-Do List</h2>
-            <input type="text" id="newTaskInput" placeholder="Add a new task">
-            <button id="addTaskBtn" class="button-primary">Add Task</button>
-            <ul id="taskList" class="task-list"></ul>
-        </section>
-
-        <section class="weather-widget">
-            <h2>Check Weather</h2>
-            <input type="text" id="cityInput" placeholder="Enter your city">
-            <button id="checkWeatherBtn" class="button-primary">Check Weather</button>
-            <div id="weatherResult"></div>
+            <button id="translateBtn" class="button-primary">Translate</button>
         </section>
 
         <section class="feedback-section">
-            <h2>Submit Feedback</h2>
+            <h2>Submit Your Review</h2>
             <label for="feedbackText">Your feedback:</label>
             <textarea id="feedbackText" rows="4" placeholder="Write your feedback here"></textarea>
+
             <label for="rating">Rate us:</label>
             <select id="rating">
                 <option value="5">⭐⭐⭐⭐⭐</option>
@@ -109,9 +64,16 @@
                 <option value="2">⭐⭐</option>
                 <option value="1">⭐</option>
             </select>
+
             <button id="submitFeedbackBtn" class="button-primary">Submit Feedback</button>
         </section>
+
+        <section class="recent-activity">
+            <h2>Recent Feedback</h2>
+            <ul id="activityLog" class="activity-list"></ul>
+        </section>
     </main>
+
     <script src="js/languageSwitcher.js"></script>
 </body>
 
